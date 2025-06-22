@@ -1,0 +1,27 @@
+trigger:
+  - main  # or your default branch
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  azureSubscription: '<your-azure-service-connection-name>'
+  storageAccountName: '<your-storage-account-name>'
+  resourceGroupName: '<your-resource-group-name>'
+  indexDocument: 'Home.html'
+  errorDocument: '404.html'
+
+steps:
+
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: '$(azureSubscription)'
+    scriptType: bash
+    scriptLocation: inlineScript
+    inlineScript: |
+      echo "Uploading files to Azure Blob Static Website Hosting"
+      az storage blob upload-batch \
+        --account-name $(storageAccountName) \
+        --destination \$web \
+        --source $(System.DefaultWorkingDirectory)/static-gym-html-css-app \
+        --overwrite
