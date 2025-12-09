@@ -19,7 +19,7 @@ No description provided.
 
 ## 🧠 Tech Stack Used
 
-- **Detected Technologies:** Azure, CSS, HTML, Machine Learning
+- **Detected Technologies:** Kubernetes / K8s, Azure
 - **GitHub Topics:** None
 
 ---
